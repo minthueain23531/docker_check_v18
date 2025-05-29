@@ -6,7 +6,11 @@ COPY ./addons /mnt/extra-addons
 
 WORKDIR /opp/odoo
 
-RUN apt-get update && apt-get install -y libreoffice && apt-get clean
+# Install system dependencies, including Brlapi system package
+RUN apt-get update && apt-get install -y \
+    libreoffice \
+    libbrlapi-dev \
+ && apt-get clean
 
 COPY ./requirements.txt /opt/odoo/requirements.txt
 
